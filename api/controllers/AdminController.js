@@ -138,6 +138,7 @@ module.exports = {
     if (!peticion.session || !peticion.session.admin) {
       peticion.addFlash('mensaje', 'Sesión inválida')
       return respuesta.redirect("/admin/inicio-sesion")
+      
     }
 
     let ordenes = await Orden.find({ cliente: peticion.params.clienteId }).sort('id desc')

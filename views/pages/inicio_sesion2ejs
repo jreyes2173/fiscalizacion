@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <h2>Inicio de Sesión</h2>
+
+    <% flash.get('mensaje').forEach(function (msg) { %>
+    <div class="alert alert-danger" role="alert">
+      <%=msg%>
+    </div>
+    <% }) %>
+
+    <% ficha_id.forEach( ficha_id => { %>
+      <form action="/procesar-ficha" method="post">
+        <div class="form-group">
+          <label for="hora">hora</label>
+          <input type="time" class="form-control" id="hora" name="hora" value="<%=ficha_id.hora%>" required>
+        </div>
+        <div class="form-group">
+          <label for="fecha">fecha</label>
+          <input type="date" class="form-control" id="fecha" name="fecha" value="<%=ficha_id.fecha%>" required>
+        </div>
+        <div class="form-group">
+          <label for="region">Region</label>
+          <input type="text" class="form-control" id="region" name="region" value="<%=ficha_id.region%>"  required>
+          </div>
+          <div class="form-group">
+            <label for="supervisor">Supervisor</label>
+            <input type="text" class="form-control" id="supervisor" name="supervisor" value="<%=ficha_id.supervisor%>" required>
+            </div>  
+            <div class="form-group">
+              <label for="supervisor">programa</label>
+              <input type="text" class="form-control" id="supervisor" name="programa" value="<%=ficha_id.programa%>" required>
+              </div>  
+              <div class="form-group">
+                <label for="supervisor">capataz</label>
+                <input type="text" class="form-control" id="supervisor" name="supervisor" value="<%=ficha_id.capataz%>" required>
+                </div>     
+                <div class="form-group">
+                  <label for="supervisor">ubicacioe</label>
+                  <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="<%=ficha_id.ubicacion%>" required>
+                  </div> 
+                  <div class="form-group">
+                    <label for="supervisor">jornalero</label>
+                    <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="<%=ficha_id.cant_jornalero%>" required>
+                    </div>         
+              
+              <% }) %>  
+        <button type="submit" class="btn btn-primary">Continuar</button>
+      </form>
+  </div>
+  <div class="col-md-3"></div>
+</div>

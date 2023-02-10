@@ -1,0 +1,316 @@
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <h2>Fiscalizacion de Brigada</h2>
+
+    <% flash.get('mensaje').forEach(function (msg) { %>
+      <div class="alert alert-danger" role="alert">
+        <%=msg%>
+      </div>
+      <% }) %>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>Hora</th>
+              <th>Fecha</th>
+              <th>Direccion</th>
+              <th>Supervisor</th>
+              <th>Capataz</th>
+              <th>Cantidad de Jornaleros</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% ficha_det.forEach( ficha_det=> {
+              
+              function procesarFila(resultado){  
+          
+          var arreglo = resultado.split(" ");
+          var ano = arreglo[3];
+          var mes = arreglo[1];
+          var dia = arreglo[2];
+          return dia + "-" + mes+ "-" +ano;
+        }  
+     
+        
+       var fecha3 = procesarFila(ficha_det.fecha.toString())
+              
+              
+              
+              %>
+              <tr>
+                <td><a href="/identificacion/<%=ficha_det.id%>">
+                    <%=ficha_det.id%>
+                  </a></td>
+                <td>
+                  <%=ficha_det.hora%>
+                </td>
+                <td>
+                  <%=fecha3%>
+                </td>
+                <td>
+                  <%=ficha_det.programa%>
+                </td>
+                <td>
+                  <%=ficha_det.supervisor%>
+                </td>  
+                <td>
+                  <%=ficha_det.capataz%>
+                </td> 
+                <td>
+                  <%=ficha_det.cant_jornalero%>
+                </td>   
+                          
+
+              </tr>
+
+             
+          </tbody>
+        </table>
+        <hr />
+        <form action="/procesar-identificacion" method="post">
+          <h1>Identificacion</h1>
+          <div class="form-group row">
+            <label for="mameluco" class="col-sm-2  col-form-label">Mameluco</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="mamelucos" name="mamelucos" required  >
+            </div>
+            <label for="chalecos_ref" class="col-sm-2  col-form-label">Chalecos Ref.</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="chalecos_reflectores" name="chalecos_reflectores" required>
+            </div>
+            <label for="gorras" class="col-sm-2 col-form-label">Gorras</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="gorras" name="gorras" required>
+            </div>                        
+          </div>
+           
+          <div class="form-group row">
+            <label for="cascos" class="col-sm-2 col-form-label">Cascos</label>
+          <div class="col-sm-10 col-md-2">
+            <input type="number" class="form-control" id="cascos" name="cascos" required>
+          </div>
+            <label for="botas_de_go" class="col-sm-2 col-form-label">Botas de Goma</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="botas_de_gomas" name="botas_de_gomas" required>
+            </div>
+            <label for="tenis" class="col-sm-2 col-form-label">Tenis</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="tenis" name="tenis" required>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="sandalias" class="col-sm-2 col-form-label">Sandalias</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="sandalias" name="sandalias" required/>
+            </div>
+            <label for="zapatos" class="col-sm-2 col-form-label">Zapatos</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="zapatos" name="zapatos" required />
+            </div>
+            <label for="lentes" class="col-sm-2 col-form-label">Lentes</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="lentes" name="lentes" required/>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="guantes" class="col-sm-2 col-form-label">Guantes</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="guantes" name="guantes" required>
+            </div>
+            <label for="botas_de_material" class="col-sm-2 col-form-label">Botas de Material</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="botas_de_material" name="botas_de_material" required>
+            </div>
+          </div>
+          
+          <div class="form-group row">
+            <label for="condicion" class="col-sm-2 col-form-label">Condicion</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="condicion" name="condicion" required>
+            </div>            
+            <div class="col-sm-10">
+              <input type="hidden" class="form-control" id="ficha_id" name="ficha_id" value="<%=ficha_det.id%> " required>
+            </div>
+          </div>
+          <% }) %>
+          <fieldset class="form-group">
+            <div class="row">
+              <legend class="col-form-label col-sm-2 pt-0">Origen</legend>
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="mopc" value="mopc" checked />
+                  <label class="form-check-label" for="mopc">
+                    MOPC
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="propio" value="propio" />
+                  <label class="form-check-label" for="propio">
+                    Propio
+                  </label>
+                </div>
+
+              </div>
+            </div>
+          </fieldset>
+          <hr />
+          <!--Herramientas de trabajo-->
+
+          <h1>Herramientas de Trabajo</h1>
+          <div class="form-group row">
+            <label for="machetes" class="col-sm-2  col-form-label">Machetes</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="machetes" name="machetes" required >
+            </div>
+            <label for="machetes_pr" class="col-sm-2  col-form-label">Machetes Propios</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="machetes_propios" name="machetes_propios" required >
+            </div>
+            <label for="limas" class="col-sm-2 col-form-label">Limas</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="limas" name="limas" required >
+            </div>
+
+          </div>
+
+          <div class="form-group row">
+            <label for="picos" class="col-sm-2 col-form-label">Picos</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="picos" name="picos" required >
+            </div>
+            <label for="palas" class="col-sm-2 col-form-label">Palas</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="palas" name="palas" required >
+            </div>
+            <label for="escobas" class="col-sm-2 col-form-label">Escobas</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="escobas" name="escobas" required >
+            </div>            
+          </div>
+
+
+          <div class="form-group row">
+            <label for="rastrillos" class="col-sm-2 col-form-label">Rastrilloss</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="rastrillos" name="rastrillos" required >
+            </div>
+            <label for="trimmer" class="col-sm-2 col-form-label">Trimmer</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="trimmer" name="trimmer" required >
+            </div>
+            <label for="motosierras" class="col-sm-2 col-form-label">Motosierras</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="motosierras" name="motosierras" required >
+            </div>            
+          </div>
+
+          <div class="form-group row">
+            <label for="hilos_trimmers" class="col-sm-2 col-form-label">Hilos_trimmers</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="hilos_trimmers" name="hilos_trimmers" required >
+            </div>
+            <label for="combustible" class="col-sm-2 col-form-label">Combustible</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="combustible" name="combustible" required >
+            </div>
+            <label for="carretillas" class="col-sm-2 col-form-label">Carretillas</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="carretillas" name="carretillas" required >
+            </div>
+           
+          </div>
+
+
+          <div class="form-group row">
+            <label for="carritos_contadores" class="col-sm-2 col-form-label">Carritos Contadores</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="carritos_contadores" name="carritos_contadores" required >
+            </div>
+            <label for="condicion2" class="col-sm-2 col-form-label">Condicion</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="condicion2" required >
+            </div>
+          </div>
+          <hr />
+          <!--Herramientas de seguridad-->
+
+          <h1>Herramientas de Seguridad</h1>
+          <div class="form-group row">
+            <label for="cono" class="col-sm-2  col-form-label">Cono</label>
+            <div class="col-sm-10 col-md-4">
+              <input type="number" class="form-control" id="cono" name="cono" required >
+            </div>
+            <label for="drones" class="col-sm-2  col-form-label">Drones</label>
+            <div class="col-sm-10 col-md-4">
+              <input type="number" class="form-control" id="drones" name="drones" required >
+            </div>
+
+          </div>
+
+          <div class="form-group row">
+            <label for="vallas_t_libro" class="col-sm-2 col-form-label">Vallas tipo Libro</label>
+            <div class="col-sm-10 col-md-4">
+              <input type="number" class="form-control" id="vallas_t_libro" name="vallas_t_libro" required >
+            </div>
+            <label for="cintas" class="col-sm-2 col-form-label">Cintas</label>
+            <div class="col-sm-10 col-md-4">
+              <input type="number" class="form-control" id="cintas"  name="cintas" required >
+            </div>
+          </div>
+
+          <!--Manejo de Desechos-->
+          <h1>Manejo de Desechos</h1>
+
+          
+            <div class="row">
+              <div class="col-sm-10"></div>
+              <label>País</label>
+              <select name="recogido_por" id="recogido_por" required >
+                <option value="">Seleccione</option>
+                <option value="mopc">MOPC</option>
+                <option value="alcaldia">Alcaldia</option>               
+              </select>
+            <!--hasta aqui-->           
+
+              </div>
+            </div>
+            
+
+            <div class="form-group row">
+              <label for="contenido" class="col-sm-2 col-form-label">Observacion</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="observacion" name="observacion"> </textarea>
+
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-10 col-md-4">
+                  <button type="submit" class="btn btn-primary">Registrarse</button>
+                </div>
+              </div>
+              <hr />
+        </form>
+  </div>
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#observacion'), {
+        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
+        heading: {
+          options: [
+            { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+            { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+            { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+          ]
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  </script>
+</div>
+<div class="col-md-3"></div>
+</div>

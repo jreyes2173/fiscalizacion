@@ -5,6 +5,8 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+//const Identificacion = require("../models/Identificacion");
+
 module.exports = {
 
   agregarCarroCompra: async (peticion, respuesta) => {
@@ -70,11 +72,61 @@ module.exports = {
     let ordenes = await Orden.find({ cliente: peticion.session.cliente.id} ).sort('id desc')
     respuesta.view('pages/mis_ordenes', { ordenes })
   },
-
-  fichas: async (peticion, respuesta) => {
-    let cliente1 = await Cliente.find({ cliente: peticion.session.cliente.id} ).sort('id desc')  
-    respuesta.view('pages/fichas',cliente1)
+  fichas: async (peticion, respuesta) => {  
+    let ficha_id = await Ficha.find({ activar: true }).sort("id")   
+    var continuar= 'Pendiente'    
+    respuesta.view('pages/fichas', { ficha_id })
   },
+
+  consultaFichas: async (peticion, respuesta) => { 
+    
+    
+    let c_fichas = await Ficha.find({ activar: false }).sort("id") 
+    
+    var resultado = [];
+    var fecha_f=[];
+    
+    resultado= c_fichas.map(x => {
+      return x.fecha;
+    })
+
+    function procesarFila(resultado){      
+      
+      var arreglo = resultado.split(" ");
+      var ano = arreglo[3];
+      var mes = arreglo[1];
+      var dia = arreglo[2];
+      return dia + "-" + mes+ "-" +ano;
+    }
+ 
+    
+   var fecha3 = procesarFila(resultado.toString());
+    
+
+
+    fecha_f = resultado.slice(0, 2);
+    console.log(fecha_f);
+    respuesta.view('pages/c_fichas', { c_fichas },{fecha3})
+  },
+
+  identificacion2: async (peticion, respuesta) => {  
+    let ficha = await Ficha.find({activar: true  }).sort("id")    
+    respuesta.view('pages/herramientas_tra',{ ficha} )
+  },
+
+
+  fichas2: async (peticion, respuesta) => {     
+   let ficha_id = await Ficha.find({cliente_id:peticion.session.cliente.id, activar: true });
+    respuesta.view('pages/fichas2', { ficha_id })
+  },
+
+  identificacion: async (peticion, respuesta) => {     
+    let ficha_det = await Ficha.find({id:peticion.params.ficha_id});
+     respuesta.view('pages/identificacion', { ficha_det })
+   },
+ 
+
+  
 
   ordenDeCompra: async (peticion, respuesta) => {
     if (!peticion.session || !peticion.session.cliente) {

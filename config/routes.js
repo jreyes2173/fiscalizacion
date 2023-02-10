@@ -30,15 +30,22 @@ module.exports.routes = {
     view: 'pages/acerca_de'
   },
 
-  'GET /registro': 'SesionController.registro',
-
-  
+  'GET /registro': 'SesionController.registro',  
 
   'POST /procesar-registro': 'SesionController.procesarRegistro',
   
   'POST /procesar-ficha': 'SesionController.procesarFicha',
+  
+  'POST /procesar-identificacion': 'SesionController.procesarIdentificacion',
 
+  'POST /procesar-herremientas': 'SesionController.procesarHerremientas',
+
+   
   'GET /inicio-sesion': 'SesionController.inicioSesion',
+
+  'GET /inicio-sesion2': 'SesionController.inicioSesion2',
+   
+  'GET /identificacion': 'SesionController.identificacion', 
 
   'GET /cerrar-sesion': 'SesionController.cerrarSesion',
 
@@ -50,11 +57,22 @@ module.exports.routes = {
 
   'GET /eliminar-carro-compra/:fotoId': 'CompraController.eliminarCarroCompra',
 
+
+
   'GET /comprar': 'CompraController.comprar',
 
-  'GET /mis-ordenes': 'CompraController.misOrdenes',
+  'GET /identificacion/:ficha_id': 'CompraController.identificacion',
+  
+  'GET /identi2': 'CompraController.identificacion2',
 
   'GET /fichas': 'CompraController.fichas',
+
+  'GET /consulta-fichas': 'CompraController.consultaFichas',
+  
+
+  'GET/identificacion': 'CompraController.identificacion',
+
+  'GET /fichas2': 'CompraController.fichas2',
 
   'GET /mis-ordenes2': 'CompraController.misOrdenes2',
 

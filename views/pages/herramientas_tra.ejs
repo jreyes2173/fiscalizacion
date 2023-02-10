@@ -1,0 +1,178 @@
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <h2>Fiscalizacion de Brigada</h2>
+
+    identifi
+    
+    <% flash.get('mensaje').forEach(function (msg) { %>
+      <div class="alert alert-danger" role="alert">
+        <%=msg%>
+      </div>
+      <% }) %>
+
+        
+        <form action="/procesar-herremientas" method="post">
+
+          <!--Herramientas de trabajo-->         
+
+          <% ficha.forEach( ficha=> { %>                
+          <h1>Herramientas de Trabajo</h1>
+          <div class="form-group row">
+            <label for="machetes" class="col-sm-2  col-form-label">Machetes</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="machetes" placeholder="Machetes" />
+            </div>
+            <label for="machetes_pr" class="col-sm-2  col-form-label">Machetes Propios</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="machetes_pr" placeholder="Machetes Propios" />
+            </div>
+            <label for="limas" class="col-sm-2 col-form-label">Limas</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="limas" placeholder="Limas" />
+            </div>
+
+          </div>
+
+          <div class="form-group row">
+            <label for="palas" class="col-sm-2 col-form-label">Palas</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="palas" placeholder="Palas" />
+            </div>
+            <label for="escobas" class="col-sm-2 col-form-label">Escobas</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="escobas" placeholder="Escobas" />
+            </div>
+            <label for="rastrillos" class="col-sm-2 col-form-label">Rastrilloss</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="rastrillos" placeholder="Rastrillos" />
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="trimmer" class="col-sm-2 col-form-label">Trimmer</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="trimmer" placeholder="Trimmer" />
+            </div>
+            <label for="motosierras" class="col-sm-2 col-form-label">Motosierras</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="motosierras" placeholder="Motosierras" />
+            </div>
+            <label for="hilos_trimmers" class="col-sm-2 col-form-label">Hilos_trimmers</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="hilos_trimmers" placeholder="Hilos_trimmers" />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="combustible" class="col-sm-2 col-form-label">Combustible</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="combustible" placeholder="Combustible" />
+            </div>
+            <label for="carretillas" class="col-sm-2 col-form-label">Carretillas</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="carretillas" placeholder="Carretillas" />
+            </div>
+            <label for="carritos_contadores" class="col-sm-2 col-form-label">Carritos Contadores</label>
+            <div class="col-sm-10 col-md-2">
+              <input type="number" class="form-control" id="carritos_contadores" placeholder="Carritos Contadores" />
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="condicion2" class="col-sm-2 col-form-label">Condicion</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="condicion2" placeholder="Condicion" />
+            </div>  
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="ficha_id" name="ficha_id" value="7 " required>
+            </div>          
+          </div>
+          <% }) %>
+          <hr />
+         
+          <!--Herramientas de seguridad-->
+
+          <h1>Herramientas de Seguridad</h1>
+          <div class="form-group row">
+            <label for="cono" class="col-sm-2  col-form-label">Cono</label>
+            <div class="col-sm-10 col-md-4">
+              <input type="number" class="form-control" id="cono" placeholder="Cono" />
+            </div>
+            <label for="drones" class="col-sm-2  col-form-label">Drones</label>
+            <div class="col-sm-10 col-md-4">
+              <input type="number" class="form-control" id="drones" placeholder="Drones" />
+            </div>
+
+          </div>
+
+          <div class="form-group row">
+            <label for="vallas_t_libro" class="col-sm-2 col-form-label">Vallas tipo Libro</label>
+            <div class="col-sm-10 col-md-4">
+              <input type="number" class="form-control" id="vallas_t_libro" placeholder="vallas_t_libro" />
+            </div>
+            <label for="cintas" class="col-sm-2 col-form-label">Cintas</label>
+            <div class="col-sm-10 col-md-4">
+              <input type="number" class="form-control" id="cintas" placeholder="Cintas" />
+            </div>
+          </div>
+
+          <!--Manejo de Desechos-->
+          <h1>Manejo de Desechos</h1>
+
+          <fieldset class="form-group">
+            <div class="row">
+              <legend class="col-form-label col-sm-2 pt-0">Recogido por</legend>
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="recogido_por" id="mopc" value="mopc" checked />
+                  <label class="form-check-label" for="mopc">
+                    MOPC
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="recogido_por" id="propio" value="alcaldia" />
+                  <label class="form-check-label" for="alcaldia">
+                    Alcaldia
+                  </label>
+                </div>
+
+              </div>
+            </div>
+            </field>
+
+            <div class="form-group row">
+              <label for="contenido" class="col-sm-2 col-form-label">Observacion</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="observacion" name="observacion"> </textarea>
+
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-10 col-md-4">
+                  <button type="submit" class="btn btn-primary">Registrarse</button>
+                </div>
+              </div>
+              <hr />
+        </form>
+  </div>
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#observacion'), {
+        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
+        heading: {
+          options: [
+            { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+            { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+            { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+          ]
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  </script>
+</div>
+<div class="col-md-3"></div>
+</div>

@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <h2>Brigadas Registradas</h2>
+
+    <% flash.get('mensaje').forEach(function (msg) { %>
+    <div class="alert alert-danger" role="alert">
+      <%=msg%>
+    </div>
+    <% }) %>
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Hora</th>
+          <th>Fecha</th>
+          <th>Capataz</th>
+          <th>Supervisor</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <% c_fichas.forEach( c_fichas => { 
+          
+          function procesarFila(resultado){  
+          
+          var arreglo = resultado.split(" ");
+          var ano = arreglo[3];
+          var mes = arreglo[1];
+          var dia = arreglo[2];
+          return dia + "-" + mes+ "-" +ano;
+        }  
+     
+        
+       var fecha3 = procesarFila(c_fichas.fecha.toString());%>
+          
+          
+            
+          <tr>            
+            <td><a href="/identificacion/<%=c_fichas.id%>"><%=c_fichas.id%></a></td>            
+            <td><%=c_fichas.hora%></td>
+            <td><%=fecha3%></td>
+            <td><%=c_fichas.capataz%></td>
+            <td><%=c_fichas.supervisor%></td>
+           
+            <td>
+                    
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    
+  </div>
+  <div class="col-md-3"></div>
+</div>

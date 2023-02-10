@@ -3,11 +3,52 @@
   <div class="col-md-6">
     <h2>Fiscalizacion de Brigada</h2>
 
-    <% flash.get('mensaje').forEach(function (msg) { %>
+
+    <table class="table">
+     
+      <tbody>
+       <% console.log(ficha_id) 
+       if (ficha_id!=""){
+        %><span class="alert alert-danger">Continuar con lo Pendiente</span><%
+       }
+         ficha_id.forEach( ficha_id => {         
+          function procesarFila(resultado){  
+          
+          var arreglo = resultado.split(" ");
+          var ano = arreglo[3];
+          var mes = arreglo[1];
+          var dia = arreglo[2];
+          return dia + "-" + mes+ "-" +ano;
+        }  
+     
+        
+       var fecha3 = procesarFila(ficha_id.fecha.toString())
+       %>
+           <span> </span>
+          <tr>            
+            <td><a href="/identificacion/<%=ficha_id.id%>"><%=ficha_id.id%></a></td>
+            <td><%=ficha_id.hora%></td>
+            <td><%=fecha3%></td>
+            <td><%=ficha_id.capataz%></td>
+            <td><%=ficha_id.supervisor%></td>
+           
+            <td>
+                    
+          </tr>
+          
+        <% }) %>
+      </tbody>
+    </table>
+    
+    <% flash.get('mensaje').forEach(function (msg) {
+       %>
     <div class="alert alert-danger" role="alert">
       <%=msg%>
     </div>
-    <% }) %>
+    <% }) %>  
+    
+
+
 
     <form action="/procesar-ficha" method="post">
       <div class="form-group">
@@ -41,7 +82,6 @@
         </optgroup>
      </select>
     </div>
-
     <div class="form-group">
       <label for="capataz">Capataz</label>
       <input type="text" class="form-control" id="capataz" name="capataz" required>
@@ -55,8 +95,11 @@
         <div class="form-group">
           <label for="cant_jornalero">Cant. Jornalero mas Capataz</label>
           <input type="number" class="form-control" id="cant_jornalero" name="cant_jornalero" required>
-          </div>  
-
+          </div>            
+          <div class="form-group">            
+            <input type="hidden" class="form-control" id="cliente_id" name="cliente_id" value="<%=session.cliente.id%> " required>
+            </div>
+          
       
       <button type="submit" class="btn btn-primary">Continuar</button>
     </form>

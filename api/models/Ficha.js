@@ -31,7 +31,10 @@
 
       cant_jornalero: { type: 'number' },
 
-       cliente_id: { type: 'number' }
+      cliente_id: { type: 'string' }, 
+
+      activar: { type: 'boolean'} 
+
   
        
   
